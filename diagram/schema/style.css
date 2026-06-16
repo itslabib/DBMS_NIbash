@@ -1,0 +1,82 @@
+/* Custom Canvas Background Pattern */
+.color-mode-bg {
+    background-color: #f8fafc;
+    background-image: 
+        linear-gradient(to right, #e2e8f0 1px, transparent 1px),
+        linear-gradient(to bottom, #e2e8f0 1px, transparent 1px);
+    background-size: 20px 20px;
+}
+
+/* Black & White Mode Overrides */
+body.bw-mode .color-mode-bg {
+    background-color: #ffffff;
+    background-image: none;
+}
+
+body.bw-mode .table-card {
+    background-color: #ffffff !important;
+    border-color: #000000 !important;
+    color: #000000 !important;
+    box-shadow: none !important;
+}
+
+body.bw-mode .table-header {
+    background-color: #ffffff !important;
+    border-bottom: 1px solid #000000 !important;
+    color: #000000 !important;
+}
+
+body.bw-mode .table-row {
+    border-bottom-color: #000000 !important;
+}
+
+body.bw-mode .col-name, 
+body.bw-mode .col-type {
+    color: #000000 !important;
+}
+
+body.bw-mode .svg-line {
+    stroke: #000000 !important;
+}
+
+/* Table Card Base Styles */
+.table-card {
+    transition: box-shadow 0.2s ease, transform 0.1s ease;
+    will-change: transform;
+}
+
+.table-card.dragging {
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    z-index: 100 !important;
+    opacity: 0.95;
+}
+
+/* Smooth zooming plane */
+#diagram-plane {
+    transform-origin: 0 0;
+    will-change: transform;
+}
+
+/* Print Specific */
+@media print {
+    body, #canvas-container {
+        background: #ffffff !important;
+    }
+    .table-card {
+        box-shadow: none !important;
+        border-color: #000000 !important;
+        background: #ffffff !important;
+        break-inside: avoid;
+    }
+    .table-header {
+        background: #ffffff !important;
+        color: #000000 !important;
+        border-bottom: 1px solid #000000 !important;
+    }
+    .svg-line {
+        stroke: #000000 !important;
+    }
+    * {
+        color: #000000 !important;
+    }
+}

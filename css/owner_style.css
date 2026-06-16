@@ -1,0 +1,146 @@
+/* css/admin_style.css */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --color-bg-base: #f8fafc; /* slate-50 */
+  --color-bg-card: rgba(255, 255, 255, 0.7);
+  --color-accent: #10b981; /* emerald */
+  --color-navy: #1e293b;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--color-bg-base);
+  color: #1e293b; /* navy */
+  margin: 0;
+  /* subtle gradient for light theme */
+  background-image: radial-gradient(circle at top right, rgba(16, 185, 129, 0.1), transparent 400px),
+                    radial-gradient(circle at bottom left, #ffffff, #f1f5f9 100%);
+  background-attachment: fixed;
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(226, 232, 240, 0.5); /* slate-200 */
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(16, 185, 129, 0.5); /* emerald */
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(16, 185, 129, 0.8);
+}
+
+/* Glassmorphism Classes (Light Theme) */
+.glass-panel {
+  background: var(--color-bg-card);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 1);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+}
+
+.glass-header {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+}
+
+/* Card styles */
+.Owner-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.75rem; /* 12px */
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.Owner-card:hover {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  border-color: rgba(16, 185, 129, 0.3); /* emerald-500 tint */
+}
+
+.bento-card {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.bento-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.1);
+  border-color: rgba(16, 185, 129, 0.3);
+}
+
+/* Emergency Red Zone */
+.emergency-zone {
+  background: linear-gradient(135deg, rgba(254, 226, 226, 0.8) 0%, rgba(255, 255, 255, 0.9) 100%);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  box-shadow: 0 0 20px rgba(220, 38, 38, 0.05) inset;
+  animation: pulse-border 3s infinite alternate;
+}
+
+@keyframes pulse-border {
+  0% { border-color: rgba(239, 68, 68, 0.2); }
+  100% { border-color: rgba(239, 68, 68, 0.6); }
+}
+
+.pulse-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #ef4444;
+  border-radius: 50%;
+  box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+  animation: pulse-ring 2s infinite cubic-bezier(0.66, 0, 0, 1);
+}
+
+@keyframes pulse-ring {
+  to { box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); }
+}
+
+.inner-panel {
+  background: rgba(248, 250, 252, 0.7); /* slate-50 */
+  border: 1px solid rgba(226, 232, 240, 0.8); /* slate-200 */
+  border-radius: 0.75rem;
+}
+
+.btn-primary {
+  transition: all 0.2s ease;
+  background: linear-gradient(135deg, #10b981, #059669); /* emerald */
+  color: white;
+}
+.btn-primary:hover {
+  background: linear-gradient(135deg, #34d399, #10b981);
+  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+  transform: scale(1.02);
+}
+
+.btn-secondary {
+  transition: all 0.2s ease;
+  background: rgba(241, 245, 249, 0.8); /* slate-100 */
+  border: 1px solid rgba(226, 232, 240, 1);
+  color: #475569;
+}
+.btn-secondary:hover {
+  background: rgba(226, 232, 240, 0.8);
+  border-color: #cbd5e1;
+}
+
+.admin-table th {
+  background: rgba(241, 245, 249, 0.9);
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  color: #64748b; /* slate-500 */
+}
+.admin-table tr {
+  border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+  transition: background 0.2s;
+}
+.admin-table tr:hover {
+  background: rgba(248, 250, 252, 0.8);
+}

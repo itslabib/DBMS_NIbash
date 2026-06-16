@@ -1,0 +1,462 @@
+\documentclass[11pt, a4paper, oneside]{report}
+
+% --- Packages ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern} % Modern font
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{colortbl}
+\usepackage{float}
+\usepackage{tcolorbox}
+\usepackage{listings}
+\usepackage{caption}
+\usepackage{pdflscape}
+\usepackage{hyperref}
+\usepackage{enumitem}
+
+% --- Page Geometry ---
+\geometry{a4paper, left=2.5cm, right=2.5cm, top=3cm, bottom=3cm}
+
+% --- Colors ---
+\definecolor{primary}{RGB}{15, 76, 129} % Deep Blue
+\definecolor{secondary}{RGB}{0, 150, 136} % Teal
+\definecolor{accent}{RGB}{231, 76, 60} % Red
+\definecolor{bglight}{RGB}{245, 247, 250}
+\definecolor{darkgray}{RGB}{60, 60, 60}
+
+% --- Hyperref setup ---
+\hypersetup{
+    colorlinks=true,
+    linkcolor=primary,
+    filecolor=secondary,      
+    urlcolor=accent,
+    pdftitle={Nibash Project Report},
+}
+
+% --- Headers & Footers (fancyhdr) ---
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{primary}\leaders\hrule height \headrulewidth\hfill}}
+\fancyhead[L]{\textcolor{darkgray}{\small \textbf{Nibash:} Smart Building Management}}
+\fancyhead[R]{\textcolor{darkgray}{\small \leftmark}}
+\fancyfoot[C]{\thepage}
+
+% --- Heading Styles (titlesec) ---
+\titleformat{\chapter}[display]
+  {\normalfont\bfseries\color{primary}}
+  {\filleft\Large\MakeUppercase{\chaptertitlename} \Huge\thechapter}
+  {1ex}
+  {\titlerule\vspace{1ex}\filright\Huge}
+  [\vspace{1ex}\titlerule]
+\titlespacing*{\chapter}{0pt}{-40pt}{20pt}
+
+\titleformat{\section}
+  {\normalfont\Large\bfseries\color{secondary}}{\thesection}{1em}{}[{\titlerule[0.4pt]}]
+
+\titleformat{\subsection}
+  {\normalfont\large\bfseries\color{darkgray}}{\thesubsection}{1em}{}
+
+% --- Code Snippets Style ---
+\lstset{
+    language=SQL,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{primary}\bfseries,
+    stringstyle=\color{secondary},
+    commentstyle=\color{gray}\itshape,
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    stepnumber=1,
+    numbersep=10pt,
+    backgroundcolor=\color{bglight},
+    frame=leftline,
+    rulecolor=\color{primary},
+    tabsize=2,
+    breaklines=true,
+    xleftmargin=15pt
+}
+
+% --- Title Page ---
+\begin{document}
+
+\begin{titlepage}
+    \newgeometry{margin=2cm, left=1cm, right=1cm} % Further reduced L/R margins to ensure 1-line fit
+    
+    \begin{center}
+        \vspace*{0.5cm}
+        \includegraphics[width=0.22\textwidth]{uiu-logo.png} \\[0.6cm]
+        
+        {\fontsize{22}{26}\selectfont \textbf{\textcolor{orange!90!black}{UNITED INTERNATIONAL UNIVERSITY}}} \\[1.5cm]
+        
+        % Main Title
+        {\fontsize{45}{55}\selectfont \bfseries \textcolor{darkgray}{\textsf{NIBASH}}} \\[0.5cm]
+        {\huge \textcolor{gray}{\textit{A Centralized Building Ecosystem}}} \\[1.5cm]
+        
+        % Group Name Box
+        \begin{tcolorbox}[colback=gray!5!white, colframe=darkgray, boxrule=1.5pt, arc=6pt, width=0.5\textwidth]
+            \centering
+            \vspace{0.2cm}
+            \large \textcolor{darkgray}{\textsc{Group Name}}\\[0.2cm]
+            \huge \textbf{\textsf{Zero-NF}}
+            \vspace{0.2cm}
+        \end{tcolorbox}
+        
+        \vspace{2cm}
+        
+        % Faculty Details
+        {\Large \textcolor{darkgray}{\textbf{\textsc{Submitted To:}}}}\\[0.3cm]
+        {\large \textbf{Mr. Didarul Islam Didar}}\\[0.15cm]
+        {\large \textcolor{darkgray}{Lecturer, Dept. of CSE}}\\[1.5cm]
+        
+        % Group Details
+        {\Large \textcolor{darkgray}{\textbf{\textsc{Group Details:}}}}\\[0.4cm]
+        
+        \renewcommand{\arraystretch}{1.3}
+        \begin{tabular}{l @{\hspace{2cm}} l}
+            \large \textbf{Ahnaf Tajwar Suchak} & \large \textcolor{darkgray}{0112420437} \\
+            \large \textbf{Md Labib Ahsan} & \large \textcolor{darkgray}{0112410176} \\
+            \large \textbf{Md Rohan} & \large \textcolor{darkgray}{0112320296} \\
+            \large \textbf{Kashfia Shams Chowdhury Badhan} & \large \textcolor{darkgray}{0112330510} \\
+        \end{tabular}
+        
+        \vfill
+        
+        % Footer Date
+        {\Large \textcolor{darkgray}{\textbf{Date:} \today}}
+        \vspace*{0.5cm}
+    \end{center}
+    \restoregeometry
+\end{titlepage}
+
+\tableofcontents
+\clearpage
+
+% ... Content goes here ...
+
+\chapter{Introduction \& Overview}
+
+\section{Introduction}
+Nibash is a centralized, real-time web platform designed for the comprehensive management of residential buildings. The system bridges the gap between traditional manual property management and modern automated solutions. It provides distinct portals for building owners, residents, local service providers and administrators, offering role-based access control. 
+
+\section{Video Demonstration}
+\begin{tcolorbox}[colback=bglight, colframe=secondary, title=Project Demo]
+The complete video demonstration for this project can be accessed at the following link:\\
+\href{https://bit.ly/nibash-zero_nf}{\textbf{\textcolor{accent}{Video Link (https://bit.ly/nibash-zero\_nf)}}}
+\end{tcolorbox}
+
+\section{Motivation}
+Managing residential buildings traditionally involves fragmented data management. This fragmentation leads to data inconsistency, communication gaps, and administrative delays. Moreover, paper-based visitor approvals are prone to human error and pose security risks. 
+
+\vspace{0.5em}
+The motivation behind Nibash is to consolidate these fragmented operations into a unified digital ecosystem. By leveraging AI-based CCTV surveillance, automated billing, biometric gate face scans, and comprehensive resident information tracking, the platform aims to significantly enhance both security and operational efficiency.
+
+\newpage
+
+% Using tables for similar projects
+\section{Similar Projects \& Benchmark Analysis}
+
+\subsection{Market Alternatives}
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.4}
+    \begin{tabularx}{\textwidth}{@{} l X @{}}
+        \toprule
+        \rowcolor{primary!10}
+        \textbf{Platform} & \textbf{Key Focus \& Difference} \\
+        \midrule
+        \textbf{MyGate} & Focuses heavily on visitor management in India. Lacks automated ALPR-based vehicle entry and real-time parking slot detection. \\
+        \textbf{Buildium} & Tailored towards real estate professionals and enterprise accounting. Highly complex and expensive. \\
+        \textbf{ADDA} & A society management system offering accounting and communication. Lacks biometric integration. \\
+        \bottomrule
+    \end{tabularx}
+    \caption{Comparison with Similar Projects}
+\end{table}
+
+\subsection{Benchmark Analysis}
+Compared to existing solutions, Nibash performs highly favorably in customizability, automation and real-time security.
+\begin{itemize}[label=\textcolor{secondary}{\textbullet}]
+    \item\textbf{CCTV Polling Latency:} Low-latency polling via 4 FPS JavaScript image fetches, providing near real-time feeds without heavy buffering.
+    \item \textbf{Biometric Processing:} Utilizes lightweight OpenCV at the gate terminal for rapid resident face recognition, securely processing entries in under 2 seconds.
+    \item \textbf{ALPR Processing Speed:} The Python-based EasyOCR server rapidly scans vehicle plates upon entry, instantly logging data and tracking available parking slots.
+    \item \textbf{Automated Threat Detection:} Background CCTV processors instantly detect unknown faces and trigger real-time security alerts directly to the owner dashboard.
+    \item \textbf{Financial Automation:} Seamless integration with DESCO APIs and the SSLCommerz payment gateway allows for instant utility calculations and real-time payment verifications.
+\end{itemize}
+
+\chapter{System Features \& Modules}
+
+\section{Core Modules \& Portals}
+
+We designed Nibash with a highly compartmentalized architecture consisting of distinct portals tailored to the specific needs of building owners, residents, and local service providers.
+
+\subsection{Owner Portal}
+The Owner Portal acts as the central command center for building administration.
+\begin{itemize}[label=\textcolor{primary}{\textbullet}]
+    \item \textbf{Interactive Dashboard:} A centralized overview displaying live building statistics, resident counts, quick-action widgets, and recent notifications..
+    \item \textbf{Resident \& Apartment Management:} Provides a comprehensive interface to add, edit, view, and remove residents, as well as handle apartment assignments seamlessly.
+    \item \textbf{CCTV Surveillance Dashboard:} A real-time camera wall integrating with IP cameras and mobile devices for live streaming, complete with a capture gallery and motion detection alerts.
+    \item \textbf{User Entry Monitoring:} Allows owners to log manual entries, track all visitor activity, and monitor guest overstays effectively.
+    \item \textbf{Community Hub \& Messaging:} A dual-layer communication system featuring building-scoped announcements (Community Hub) and a direct peer-to-peer messaging platform.
+    \item \textbf{Automated Billing System:} End-to-end invoice generation tools with integrated SSLCommerz payment gateway and custom PDF templates for rent and utility collection.
+\end{itemize}
+
+\subsection{Resident Portal}
+The Resident Portal focuses on convenience, transparency, and self-service.
+\begin{itemize}[label=\textcolor{secondary}{\textbullet}]
+    \item \textbf{Personal Dashboard:} An aggregated view of personal notices, recent activity, and quick access to essential services.
+    \item \textbf{Biometric Guest Passes:} Allows residents to pre-register guests by providing their photo, enabling temporary facial recognition access at the security gate.
+    \item \textbf{Billing \& Utilities Tracking:} Direct access to monthly invoices, payment history, DESCO electricity recharge records, and consumption graphs.
+    \item \textbf{Smart Parking Management:} An integrated ALPR parking module allowing residents to view slot availability, register license plates (scanned via EasyOCR), and track booking statuses.
+    \item \textbf{Platform Support Chatbot:} A helpful assistant integrated with the Gemini API to answer common questions and guide residents on using the portal.
+    \item \textbf{Resident Profile \& Biometrics:} Enables residents to manage personal details, list emergency contacts, and enroll their own facial data for automated personal gate access.
+\end{itemize}
+
+\subsection{Security \& Administration}
+This module handles building access and monitoring.
+\begin{itemize}[label=\textcolor{accent}{\textbullet}]
+    \item \textbf{Biometric Gate Access:} Uses a Python and OpenCV script to scan faces at the entry gate and log access records.
+    \item \textbf{ALPR Parking System:} Uses EasyOCR to read vehicle license plates and authorize parking access.
+    \item \textbf{CCTV Motion Processing:} A background script that checks camera feeds to detect movement or unknown faces and logs them in the system.
+    \item \textbf{Emergency Console:} A control panel for administrators to view emergency logs or manually override gate controls.
+    \item \textbf{Gate Kiosk:} A terminal placed at the entrance where unannounced guests can register and wait for resident approval.
+\end{itemize}
+
+\section{Feature Summary Table}
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.5}
+    \begin{tabularx}{\textwidth}{@{} l X X @{}}
+        \toprule
+        \rowcolor{primary!20}
+        \textbf{Module / Role} & \textbf{Core Features} & \textbf{Task Description} \\
+        \midrule
+        
+        \textbf{Owner Portal} 
+        & Resident \& Guest Mgmt \newline Billing System \newline CCTV Dashboard \newline Announcements
+        & Add or remove residents. Generate monthly invoices with PDFs. View live camera feeds and send building announcements. \\
+        
+        \midrule
+        
+        \textbf{Resident Portal} 
+        & Utility Bills \newline Biometric Guest Passes \newline Parking Registration \newline Support Chatbot 
+        & View monthly bills. Pre-register guest photos. Register vehicles for ALPR scanning. Ask portal questions via chatbot. \\
+        
+        \midrule
+        
+        \textbf{Super Admin}
+        & Global Building Mgmt \newline Owner Registration \newline System Analytics \newline Subscriptions
+        & Manage all registered buildings. Add building owners. View global metrics and platform subscriptions. \\
+        
+        \midrule
+        
+        \textbf{Service Provider}
+        & Job Schedule \newline Ratings \& Reviews \newline Direct Messaging \newline Earnings Tracker
+        & View upcoming resident bookings. Track completed jobs, check ratings, and message residents. \\
+        
+        \bottomrule
+    \end{tabularx}
+    \caption{Detailed Feature List by Role}
+\end{table}
+
+\chapter{Database Architecture}
+
+\section{Database Design Approach}
+The Nibash database follows a relational design model utilizing MySQL. It is normalized up to the Third Normal Form (3NF) to reduce data redundancy and maintain data integrity.
+
+\section{Schema Diagram \& Core Tables}
+The database schema consists of several interconnected tables. Below are the primary entities and their attributes:
+
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.3}
+    \begin{tabularx}{\textwidth}{@{} l l X @{}}
+        \toprule
+        \rowcolor{secondary!10}
+        \textbf{Table Name} & \textbf{Primary Key} & \textbf{Key Attributes} \\
+        \midrule
+        \texttt{users} & \texttt{id} & \texttt{email}, \texttt{password}, \texttt{role}, \texttt{created\_at} \\
+        \texttt{apartments} & \texttt{id} & \texttt{building\_id}, \texttt{apt\_number}, \texttt{status} \\
+        \texttt{apartment\_assignments} & \texttt{id} & \texttt{apt\_id}, \texttt{user\_id}, \texttt{role}, \texttt{is\_active} \\
+        \texttt{bills} & \texttt{id} & \texttt{apt\_id}, \texttt{resident\_id}, \texttt{total\_amount}, \texttt{status} \\
+        \texttt{cctv\_captures} & \texttt{id} & \texttt{camera\_id}, \texttt{image\_path}, \texttt{detection\_type} \\
+        \texttt{guests} & \texttt{id} & \texttt{full\_name}, \texttt{phone\_number}, \texttt{nid\_passport\_no} \\
+        \texttt{parking\_slots} & \texttt{id} & \texttt{slot\_number}, \texttt{vehicle\_plate}, \texttt{status} \\
+        \texttt{community\_posts} & \texttt{id} & \texttt{title}, \texttt{content}, \texttt{author\_id} \\
+        \texttt{buildings} & \texttt{id} & \texttt{building\_number}, \texttt{building\_name}, \texttt{address} \\
+        \texttt{provider\_bookings} & \texttt{id} & \texttt{provider\_id}, \texttt{resident\_id}, \texttt{booking\_date}, \texttt{status} \\
+        \texttt{personal\_messages} & \texttt{id} & \texttt{sender\_id}, \texttt{receiver\_id}, \texttt{message}, \texttt{is\_read} \\
+        \texttt{payments} & \texttt{id} & \texttt{bill\_id}, \texttt{transaction\_id}, \texttt{amount\_paid}, \texttt{payment\_status} \\
+        \bottomrule
+    \end{tabularx}
+    \caption{Core Database Tables}
+\end{table}
+
+\section{Entity Relationship Diagram (ERD)}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.92\textheight,height=\textwidth,keepaspectratio,angle=90]{erd_img.jpeg}
+    \caption{Entity Relationship Diagram of the Nibash Database. 
+    Interactive version: \url{http://atsuchak.me/DBMS-ER-diagram/}}
+    \label{fig:erd}
+\end{figure}
+
+\section{Database Schema Diagram}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth,height=0.85\textheight,keepaspectratio]{schema_only.png}
+    \caption{Database Schema Diagram of the Nibash System. 
+    Interactive version: \url{https://bit.ly/nibash-schema}}
+    \label{fig:schema}
+\end{figure}
+
+\chapter{Implementation Details}
+
+\section{Some Key SQL Queries}
+The following SQL queries demonstrate the backend implementation of some core features.
+
+\subsection{Fetching Owner Dashboard Statistics}
+\begin{lstlisting}[caption=Dashboard Analytics Query]
+SELECT 
+    (SELECT COUNT(*) FROM users WHERE role = 'tenant') AS total_residents,
+    (SELECT COUNT(*) FROM apartments WHERE status = 'occupied') AS occupied_apartments,
+    (SELECT SUM(total_amount) FROM bills WHERE status = 'Paid' AND month = 'June') AS revenue,
+    (SELECT COUNT(*) FROM guests WHERE entry_time >= CURDATE()) AS today_guests;
+\end{lstlisting}
+
+\subsection{Retrieving Service Provider Schedule}
+\begin{lstlisting}[caption=Service Provider Schedule with Multi-table Joins]
+SELECT 
+    pb.booking_date, pb.time_slot, pb.status,
+    up.full_name AS resident_name, up.phone AS resident_phone,
+    b.building_name, a.apt_number
+FROM provider_bookings pb
+JOIN users u ON pb.resident_id = u.id
+LEFT JOIN user_profiles up ON u.id = up.user_id
+LEFT JOIN apartment_assignments aa ON u.id = aa.user_id AND aa.is_active = 1
+LEFT JOIN apartments a ON aa.apt_id = a.id
+LEFT JOIN buildings b ON a.building_id = b.id
+WHERE pb.provider_id = ? AND pb.booking_date >= CURRENT_DATE
+ORDER BY pb.booking_date ASC, pb.time_slot ASC;
+\end{lstlisting}
+
+\subsection{Retrieving Recent CCTV Captures}
+\begin{lstlisting}[caption=CCTV Capture Retrieval]
+SELECT c.id, c.image_path, c.detection_type, c.timestamp, d.camera_name 
+FROM cctv_captures c 
+JOIN cctv_devices d ON c.camera_id = d.id 
+WHERE d.building_id = ? 
+ORDER BY c.timestamp DESC LIMIT 12;
+\end{lstlisting}
+
+\newpage
+
+\subsection{Fetching Monthly Bills with Payment Tracking}
+\begin{lstlisting}[caption=Monthly Bill Breakdown with Payment Status]
+SELECT 
+    b.bill_number, b.month, b.year, b.issue_date, b.due_date,
+    b.subtotal, b.tax, b.total_amount, b.paid_amount, b.status,
+    p.transaction_id, p.payment_method, p.payment_date
+FROM bills b
+LEFT JOIN payments p ON b.id = p.bill_id
+WHERE b.resident_id = ? AND b.apt_id = ?
+ORDER BY b.year DESC, b.month DESC;
+\end{lstlisting}
+
+\subsection{Fetching Community Posts with Author Details}
+\begin{lstlisting}[caption=Community Posts Retrieval with Comment Counts]
+SELECT cp.id, cp.title, cp.content, cp.created_at,
+       up.full_name AS author_name, a.apt_number, 
+       cc.category_name,
+       (SELECT COUNT(*) FROM community_comments WHERE post_id = cp.id) AS comment_count
+FROM community_posts cp
+JOIN users u ON cp.user_id = u.id
+LEFT JOIN user_profiles up ON u.id = up.user_id
+JOIN apartments a ON cp.apt_id = a.id
+JOIN community_categories cc ON cp.category_id = cc.id
+WHERE cp.status = 'published'
+ORDER BY cp.is_pinned DESC, cp.created_at DESC;
+\end{lstlisting}
+
+\chapter{System Interfaces \& UI}
+
+\section{Screenshots of Application}
+\begin{figure}[H]
+    \centering
+    \begin{tcolorbox}[colback=white, colframe=primary, boxrule=1pt, title=Landing Page]
+        \centering
+        \includegraphics[width=\textwidth]{landing_img.jpeg}
+    \end{tcolorbox}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \begin{tcolorbox}[colback=white, colframe=secondary, boxrule=1pt, title=Feature Card]
+        \centering
+        \includegraphics[width=\textwidth]{feature_img.jpeg}
+    \end{tcolorbox}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \begin{tcolorbox}[colback=white, colframe=primary, boxrule=1pt, title=Owner Dashboard]
+        \centering
+        \includegraphics[width=\textwidth]{onr_img.jpeg}
+    \end{tcolorbox}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \begin{tcolorbox}[colback=white, colframe=secondary, boxrule=1pt, title=Resident Dashboard]
+        \centering
+        \includegraphics[width=\textwidth]{res_img.jpeg}
+    \end{tcolorbox}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \begin{tcolorbox}[colback=white, colframe=primary, boxrule=1pt, title=Billing Page]
+        \centering
+        \includegraphics[width=\textwidth]{bill_img.jpeg}
+    \end{tcolorbox}
+\end{figure}
+
+\chapter{Conclusion \& Future Work}
+
+\section{Limitations}
+\begin{itemize}[label=\textcolor{accent}{\textbf{--}}]
+    \item \textbf{Network Dependency:} The CCTV motion processor relies heavily on a stable local network. Network drops between IP cameras and the central server can cause temporary stream disconnections.
+    \item \textbf{Hardware Constraints:} Biometric face recognition processing time increases linearly with the number of enrolled faces unless indexed effectively, requiring adequate CPU/GPU power.
+\end{itemize}
+
+\section{Future Work}
+\begin{itemize}[label=\textcolor{primary}{\textbullet}]
+    \item \textbf{Mobile Application Integration:} Developing native Android and iOS applications to complement the web platform, specifically for pushing instant push notifications.
+    \item \textbf{Advanced AI Models:} Upgrading the motion detection processor from standard OpenCV background subtraction to deep learning models (like YOLO) for precise human classification.
+    \item \textbf{IoT Smart Home Integration:} Expanding the platform to control smart locks directly from the resident dashboard.
+\end{itemize}
+
+\section{Conclusion}
+The Nibash Smart Building Management Platform successfully demonstrates the integration of traditional property management workflows with modern, AI-driven security and payment technologies. By centralizing operations into a cohesive web application, Nibash provides an intuitive, real-time, and secure environment for both property owners and residents.
+
+\clearpage
+\newgeometry{margin=0.2cm}
+\pagestyle{empty}
+
+\begin{figure}[p]
+    \centering
+    \includegraphics[width=0.95\textheight,height=0.95\textwidth,keepaspectratio,angle=90]{erd_img.jpeg}
+\end{figure}
+
+\clearpage
+
+\begin{figure}[p]
+    \centering
+    \includegraphics[width=0.95\linewidth,height=0.95\textheight,keepaspectratio]{schema_only.png}
+\end{figure}
+
+\end{document}

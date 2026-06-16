@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Resident Account Created</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            color: #374151;
+            background-color: #ffffff;
+            margin: 0;
+            padding: 50px;
+            font-size: 15px;
+            line-height: 1.7;
+        }
+        .header { text-align: center; margin-bottom: 45px; padding-bottom: 30px; border-bottom: 1px solid #f3f4f6; }
+        .logo-text { font-size: 32px; font-weight: 800; color: #111827; margin: 0 0 10px 0; letter-spacing: -1px; }
+        .logo-text span { color: #0d9488; }
+        .welcome-title { font-size: 22px; font-weight: 300; color: #4b5563; margin: 0; }
+        
+        .content-box { background-color: #f9fafb; border: 1px solid #f3f4f6; border-radius: 8px; padding: 35px; margin-bottom: 30px; }
+        .greeting { font-size: 18px; font-weight: 600; color: #111827; margin: 0 0 20px 0; }
+        .message { color: #4b5563; margin: 0 0 30px 0; }
+        
+        .credentials-table { width: 100%; border-collapse: collapse; background-color: #ffffff; border: 1px solid #e5e7eb; }
+        .credentials-table td { padding: 15px 20px; border-bottom: 1px solid #f3f4f6; }
+        .cred-label { font-size: 12px; text-transform: uppercase; color: #9ca3af; font-weight: bold; width: 40%; }
+        .cred-value { font-family: monospace; font-size: 16px; color: #1f2937; font-weight: bold; }
+        
+        .warning-box { margin-top: 30px; padding: 15px 20px; background-color: #fffbeb; border-left: 4px solid #f59e0b; font-size: 13px; color: #92400e; }
+        .footer { margin-top: 50px; text-align: center; font-size: 12px; color: #9ca3af; }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1 class="logo-text">Ni<span>bash</span></h1>
+        <h2 class="welcome-title">Welcome to Your Community</h2>
+    </div>
+
+    <div class="content-box">
+        <p class="greeting">Hello {{RESIDENT_NAME}},</p>
+        <p class="message">Your building owner has successfully registered your profile on the Nibash platform. You now have full access to your resident portal where you can pay bills, raise maintenance requests, and book parking.</p>
+        
+        <table class="credentials-table">
+            <tr>
+                <td class="cred-label">Resident / Login ID</td>
+                <td class="cred-value">{{RESIDENT_ID}}</td>
+            </tr>
+            <tr>
+                <td class="cred-label" style="border-bottom: none;">Temporary Password</td>
+                <td class="cred-value" style="border-bottom: none;">{{TEMPORARY_PASSWORD}}</td>
+            </tr>
+        </table>
+        
+        <div class="warning-box">
+            <strong>Security Notice:</strong> Please log in to your dashboard using the credentials above and change your password immediately to ensure your account remains secure.
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>This is an automated system notification. Please do not reply.</p>
+        <p>&copy; {{CURRENT_YEAR}} Smart Nibash Systems.</p>
+    </div>
+
+</body>
+</html>

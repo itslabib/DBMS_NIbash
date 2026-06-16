@@ -1,0 +1,41 @@
+/* Custom styles for the Vis.js network container */
+#mynetwork {
+    width: 100%;
+    height: 100%;
+    background-color: #f8fafc; /* Tailwind gray-50 */
+    transition: filter 0.3s ease;
+}
+
+/* Fix for Vis.js canvas selection outlines */
+.vis-network {
+    outline: none !important;
+}
+
+/* Print Styles */
+@media print {
+    @page {
+        size: landscape;
+        margin: 0;
+    }
+    
+    body {
+        background-color: white;
+    }
+    
+    #mynetwork {
+        background-color: white;
+        height: 100vh !important;
+        width: 100vw !important;
+        position: absolute;
+        top: 0;
+        left: 0;
+        filter: grayscale(100%); /* Often best to print in B&W */
+    }
+
+    /* The network canvas needs to scale to fit */
+    .vis-network canvas {
+        /* We can let vis-network handle the drawing, but ensure no scrollbars */
+        max-width: 100%;
+        max-height: 100%;
+    }
+}

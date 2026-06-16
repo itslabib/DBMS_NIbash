@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Owner Subscription Invoice</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            color: #374151;
+            background-color: #ffffff;
+            margin: 0;
+            padding: 40px;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        .header-table { width: 100%; margin-bottom: 50px; border-collapse: collapse; border-bottom: 2px solid #111827; padding-bottom: 20px; }
+        .header-left { width: 50%; vertical-align: bottom; padding-bottom: 20px; }
+        .header-right { width: 50%; text-align: right; vertical-align: bottom; padding-bottom: 20px; }
+        
+        .logo-text { font-size: 32px; font-weight: 800; color: #111827; margin: 0 0 5px 0; letter-spacing: -1px; }
+        .logo-text span { color: #0d9488; }
+        .company-info { font-size: 11px; color: #6b7280; text-transform: uppercase; letter-spacing: 1px; }
+        
+        .invoice-title { font-size: 24px; font-weight: 600; color: #111827; margin: 0 0 10px 0; text-transform: uppercase; letter-spacing: 4px; }
+        .invoice-meta { font-size: 12px; color: #6b7280; margin: 0 0 4px 0; font-family: monospace; }
+        
+        .bill-to-table { width: 100%; margin-bottom: 40px; border-collapse: collapse; }
+        .bill-to-table td { padding: 0; vertical-align: top; }
+        .section-label { font-size: 10px; text-transform: uppercase; color: #9ca3af; font-weight: bold; letter-spacing: 1px; margin-bottom: 8px; display: block; }
+        .owner-name { font-size: 16px; font-weight: bold; color: #111827; margin: 0 0 4px 0; }
+        
+        .plan-table { width: 100%; border-collapse: collapse; margin-bottom: 50px; border: 1px solid #e5e7eb; }
+        .plan-table th { background-color: #111827; color: #ffffff; padding: 14px 20px; text-align: left; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; }
+        .plan-table td { padding: 20px; border-bottom: 1px solid #e5e7eb; color: #1f2937; background-color: #f9fafb; }
+        .plan-table .amount { text-align: right; font-family: monospace; font-size: 16px; font-weight: bold; }
+        .plan-title { font-size: 16px; font-weight: bold; margin: 0 0 4px 0; color: #111827; }
+        .plan-cycle { font-size: 12px; color: #6b7280; margin: 0; }
+        
+        .totals-table { width: 40%; margin-left: 60%; border-collapse: collapse; }
+        .totals-table td { padding: 12px 0; border-bottom: 1px solid #f3f4f6; }
+        .totals-table td.total-label { font-size: 12px; font-weight: bold; text-transform: uppercase; color: #6b7280; letter-spacing: 1px; }
+        .totals-table td.total-amount { text-align: right; font-family: monospace; font-size: 15px; }
+        .totals-table tr.grand-total td { border-bottom: none; border-top: 2px solid #111827; color: #111827; font-size: 18px; font-weight: 900; padding-top: 15px; }
+        
+        .footer { margin-top: 80px; text-align: left; font-size: 11px; color: #9ca3af; border-top: 1px solid #f3f4f6; padding-top: 20px; }
+    </style>
+</head>
+<body>
+
+    <table class="header-table">
+        <tr>
+            <td class="header-left">
+                <h1 class="logo-text">Ni<span>bash</span></h1>
+                <span class="company-info">SaaS Platform Subscription</span>
+            </td>
+            <td class="header-right">
+                <h2 class="invoice-title">Invoice</h2>
+                <p class="invoice-meta">INV #: {{INVOICE_NUMBER}}</p>
+                <p class="invoice-meta">Date: {{DATE_OF_CONFIRMATION}}</p>
+            </td>
+        </tr>
+    </table>
+
+    <table class="bill-to-table">
+        <tr>
+            <td>
+                <span class="section-label">Billed To</span>
+                <p class="owner-name">{{OWNER_NAME}}</p>
+            </td>
+        </tr>
+    </table>
+
+    <table class="plan-table">
+        <thead>
+            <tr>
+                <th>Subscription Details</th>
+                <th class="amount" style="text-align: right;">Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <p class="plan-title">{{SUBSCRIPTION_PLAN_NAME}} Plan</p>
+                    <p class="plan-cycle">Billing Cycle: {{BILLING_CYCLE}}</p>
+                </td>
+                <td class="amount">{{TOTAL_AMOUNT_PAID}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table class="totals-table">
+        <tr>
+            <td class="total-label">Subtotal</td>
+            <td class="total-amount">{{TOTAL_AMOUNT_PAID}}</td>
+        </tr>
+        <tr class="grand-total">
+            <td class="total-label" style="color: #111827;">Total Paid</td>
+            <td class="total-amount">{{TOTAL_AMOUNT_PAID}}</td>
+        </tr>
+    </table>
+
+    <div class="footer">
+        <p>This payment has been confirmed by the Super Admin. Thank you for using Smart Nibash!</p>
+        <p>&copy; {{CURRENT_YEAR}} Smart Nibash Systems. Contact support@nibash.local for any billing queries.</p>
+    </div>
+
+</body>
+</html>
